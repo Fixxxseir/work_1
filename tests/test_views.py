@@ -1,10 +1,10 @@
+import json
 from unittest.mock import patch
 
 import pandas as pd
 import pytest
-from src.views import views
-import json
 
+from src.views import views
 
 expected = {
     "greeting": "Доброе утро!",

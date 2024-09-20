@@ -1,9 +1,8 @@
 import datetime
+import json
 import logging
 from math import ceil, floor
 from typing import Any, Dict, List, Union
-import json
-
 
 from config import SERVICES_LOGS
 from src.utils import reading_excel
@@ -65,5 +64,5 @@ def investment_bank(month: str, transactions: List[Dict[str, Any]], limit: int) 
 
 
 if __name__ == "__main__":
-    data_from_excel = reading_excel("operations.xls")
+    data_from_excel = reading_excel("operations.xlsx")
     print(investment_bank("2021-10", data_from_excel.to_dict(orient="records"), 100))

@@ -150,10 +150,22 @@ def func(data):
     return pd.DataFrame(data)
 
 
-# @pytest.mark.parametrize("data, expected", [(test_data_for_log, test_data_for_log)])
-# def test_func(data, expected):
-#     result = func(data)
-#     with open(os.path.join(ROOT_DIR, "log_file.json"), "r") as file:
-#         result_file = json.load(file)
-#     assert result.equals(expected)
-#     assert result_file == expected.to_dict(orient="records")
+@pytest.mark.parametrize("data, expected", [(test_data_for_log, test_data_for_log)])
+def test_func(data, expected):
+    result = func(data)
+
+    assert result.equals(expected)
+
+    # Write the result to a JSON file
+
+    result_dict = result.to_dict(orient="records")
+
+    with open(os.path.join(ROOT_DIR, "log_file.json"), "w") as file:
+        json.dump(result_dict, file, ensure_ascii=False)
+
+    # Read the JSON file back and compare with the expected result
+
+    with open(os.path.join(ROOT_DIR, "log_file.json"), "r") as file:
+        result_file = json.load(file)
+
+    assert result_file == result_dict

@@ -56,5 +56,5 @@ def views(date: str, transactions_df) -> str:
 
 
 if __name__ == "__main__":
-    transaction_info = reading_excel("operations.xls")
+    transaction_info = reading_excel("operations.xlsx")
     print(views("2024-07-06 10:42:30", transaction_info))
